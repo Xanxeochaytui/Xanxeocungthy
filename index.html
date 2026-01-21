@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XĂN XEO CHÁY TÚI</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            min-height: 100vh; 
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 50%, #ce93d8 100%);
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 20px;
+        }
+        .container { 
+            max-width: 500px; 
+            width: 100%; 
+            background: rgba(255,255,255,0.95); 
+            padding: 40px; 
+            border-radius: 20px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        input, textarea, button { 
+            width: 100%; 
+            padding: 18px; 
+            margin: 12px 0; 
+            border: none; 
+            border-radius: 15px; 
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        button { 
+            background: linear-gradient(45deg, #ee5a24, #ff6b35); 
+            color: white; 
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover { transform: scale(1.02); }
+        .result { 
+            border: 3px solid #00b894; 
+            background: rgba(0,184,148,0.1); 
+            min-height: 100px;
+            resize: vertical;
+        }
+        h1 { 
+            color: #d81b60; 
+            margin-bottom: 30px; 
+            font-size: 28px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔥 XĂN XEO CHÁY TÚI 🔥</h1>
+        <input type="text" id="link" placeholder="Dán link Xăn Xeo Cháy Túi...">
+        <button onclick="convert()">TẠO LINK AFFILIATE</button>
+        <textarea id="result" class="result" readonly placeholder="Kết quả link affiliate sẽ hiện ở đây..."></textarea>
+        <button onclick="copy()">📋 COPY LINK</button>
+    </div>
+
+    <script>
+        function convert() {
+            const link = document.getElementById('link').value;
+            if (!link) return alert('❌ Dán link Xăn Xeo trước nhé!');
+            const encoded = encodeURIComponent(link);
+            const newLink = `https://s.shopee.vn/an_redir?origin_link=${encoded}&affiliate_id=17314740041&sub_id=gist-tool-2026`;
+            document.getElementById('result').value = newLink;
+        }
+        function copy() {
+            const result = document.getElementById('result');
+            result.select();
+            document.execCommand('copy');
+            alert('✅ Đã copy link Xăn Xeo!');
+        }
+    </script>
+</body>
+</html>
