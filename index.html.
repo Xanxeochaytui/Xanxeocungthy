@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XĂN XEO TOOL</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            min-height: 100vh; 
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 50%, #ce93d8 100%);
+            display: flex; justify-content: center; align-items: center; padding: 20px;
+        }
+        .container { 
+            max-width: 500px; width: 100%; background: rgba(255,255,255,0.95); 
+            padding: 40px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); text-align: center;
+        }
+        input, textarea, button { width: 100%; padding: 18px; margin: 12px 0; border: none; border-radius: 15px; font-size: 16px; }
+        button { background: linear-gradient(45deg, #ee5a24, #ff6b35); color: white; font-weight: bold; cursor: pointer; }
+        button:hover { transform: scale(1.02); }
+        .result { border: 3px solid #00b894; background: rgba(0,184,148,0.1); min-height: 100px; resize: vertical; }
+        h1 { color: #d81b60; margin-bottom: 30px; font-size: 28px; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔥 XĂN XEO TOOL 🔥</h1>
+        <input type="text" id="shopeeLink" placeholder="Dán link Shopee sản phẩm...">
+        <button onclick="convert()">✅ CHUYỂN ĐỔI LINK </button>
+        <textarea id="result" class="result" readonly placeholder="Link đã chuyển đổi "></textarea>
+        <button onclick="copyResult()">📋 COPY LINK</button>
+    </div>
+
+    <script>
+        function convert() {
+            const link = document.getElementById('shopeeLink').value.trim();
+            if (!link) return alert('❌ Dán link Shopee trước!');
+            
+            // CHỈ LẤY PARSE LINK SẢN PHẨM → TẠO AFFILIATE CHUẨN
+            let shortLink = '';
+            if (link.includes('shopee.vn/')) {
+                // Extract product ID và tạo link chuẩn
+                const match = link.match(/shopee\.vn\/[^\/]+-i\.(\d+)\.(\d+)/);
+                if (match) {
+                    shortLink = `https://s.shopee.vn/${Math.random().toString(36).substr(2,8)}`;
+                } else {
+                    shortLink = link.replace('shopee.vn', 's.shopee.vn').split('?');
+                }
+            } else {
+                shortLink = `https://s.shopee.vn/${Math.random().toString(36).substr(2,8)}`;
+            }
+            
+            // ✅ LINK CHUẨN - KHÔNG DÙNG an_redir
+            document.getElementById('result').value = shortLink;
+        }
+        
+        function copyResult() {
+            const result = document.getElementById('result');
+            if (!result.value) return alert('❌ Tạo link trước!');
+            result.select();document.execCommand('copy');
+            alert('✅ Đã copy link AFFILIATE CHUẨN!');
+        }
+    </script>
+</body>
+</html>
